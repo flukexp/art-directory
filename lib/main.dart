@@ -1,27 +1,27 @@
-import 'package:artdirectory/CameraScreen.dart';
-import 'package:artdirectory/HomeScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:artdirectory/RankingScreen.dart';
+import 'LoginScreen.dart';
+import 'CameraScreen.dart';
+import 'HomeScreen.dart';
+import 'RankingScreen.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: 'Art-Directory'),
+      home: const LoginScreen(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -56,17 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Container(
-        // Add box decoration
         decoration: BoxDecoration(
-          // Box decoration takes a gradient
           gradient: LinearGradient(
-            // Where the linear gradient begins and ends
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            // Add one stop for each color. Stops should increase from 0 to 1
             stops: const [0.05, 0.25, 0.55, 0.825, 0.95],
             colors: [
-              // Colors are easy thanks to Flutter's Colors class.
               Colors.red.shade100,
               Colors.white,
               Colors.blue.shade100,
