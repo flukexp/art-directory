@@ -46,13 +46,16 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.white,
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.arrow_back_ios_outlined),
-            onPressed: () {},
+            icon: const Icon(Icons.logout_rounded),
+            onPressed: () {
+              // Implement logout logic here
+              // For simplicity, let's navigate back to the login screen
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+              );
+            },
           ),
-          IconButton(
-            icon: const Icon(Icons.menu_rounded),
-            onPressed: () {},
-          )
         ],
       ),
       body: Container(

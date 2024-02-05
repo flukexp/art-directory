@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:artdirectory/main.dart';
+import 'package:uuid/uuid.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -10,7 +11,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _usernameController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,18 +46,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: _usernameController,
                   decoration: const InputDecoration(labelText: 'Username'),
                 ),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(labelText: 'Password'),
-                ),
                 const SizedBox(height: 32),
                 ElevatedButton(
                   onPressed: () {
                     // Add your login logic here
                     // For simplicity, let's navigate to the HomeScreen if username and password are not empty
-                    if (_usernameController.text.isNotEmpty && _passwordController.text.isNotEmpty) {
+                    if (_usernameController.text.isNotEmpty) {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => const MyHomePage(title: "Art Directory")),
@@ -65,6 +59,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     }
                   },
                   child: const Text('Login'),
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: () {
+                    // Generate a unique UUID for "Play as Guest"
+                    String guestUuid = Uuid().v4();
+                    _usernameController.text = 'user$guestUuid';
+
+                    // You can navigate to the home screen or perform any other actions here
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const MyHomePage(title: "Art Directory")),
+                    );
+                  },
+                  child: const Text('Play as Guest'),
                 ),
               ],
             ),
