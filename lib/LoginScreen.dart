@@ -1,6 +1,9 @@
+// LoginScreen.dart
 import 'package:flutter/material.dart';
 import 'package:artdirectory/main.dart';
 import 'package:uuid/uuid.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'HomeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -11,15 +14,40 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _usernameController = TextEditingController();
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Future<bool> isUsernameAvailable(String username) async {
+    QuerySnapshot querySnapshot = await _firestore
+        .collection('users')
+        .where('username', isEqualTo: username)
+        .get();
+
+    return querySnapshot.docs.isEmpty;
+  }
+
+  Future<void> login() async {
+    if (_usernameController.text.isNotEmpty) {
+      bool isAvailable = await isUsernameAvailable(_usernameController.text);
+
+      if (isAvailable) {
+        // Username is available, proceed with your logic
+        // For example, navigate to the HomeScreen
+        // ignore: use_build_context_synchronously
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const HomeScreen(title: "Art Directory")),
+        );
+      } else {
+        // Handle the case where the username is not available
+        print('Username is not available.');
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Art Directory'),
-        backgroundColor: Colors.white,
-      ),
-      body: Stack(
+    return Stack(
         children: [
           Container(
             decoration: BoxDecoration(
@@ -48,16 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 32),
                 ElevatedButton(
-                  onPressed: () {
-                    // Add your login logic here
-                    // For simplicity, let's navigate to the HomeScreen if username and password are not empty
-                    if (_usernameController.text.isNotEmpty) {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => const MyHomePage(title: "Art Directory")),
-                      );
-                    }
-                  },
+                  onPressed: login,
                   child: const Text('Login'),
                 ),
                 const SizedBox(height: 16),
@@ -70,7 +89,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     // You can navigate to the home screen or perform any other actions here
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const MyHomePage(title: "Art Directory")),
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const HomeScreen(title: "Art Directory")),
                     );
                   },
                   child: const Text('Play as Guest'),
@@ -79,7 +100,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ],
-      ),
     );
   }
 }
