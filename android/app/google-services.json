@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "710175621796",
+    "project_id": "artdirectory-f8508",
+    "storage_bucket": "artdirectory-f8508.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710175621796:android:92d2fa58ec2eff71789c31",
+        "android_client_info": {
+          "package_name": "com.example.artdirectory"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChOlBUf7Max3n8ET1x-V2XcaQIa9wIJZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

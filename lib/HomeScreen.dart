@@ -1,6 +1,5 @@
 import 'package:artdirectory/main.dart';
 import 'package:flutter/material.dart';
-import 'LoginScreen.dart';
 import 'MenuScreen.dart';
 import 'CameraScreen.dart';
 import 'RankingScreen.dart';

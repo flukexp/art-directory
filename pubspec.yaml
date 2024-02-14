@@ -31,7 +31,7 @@ dependencies:
   camera: null
   cloud_firestore: ^4.15.3
   cupertino_icons: ^1.0.2
-  firebase_core: ^2.25.3
+  firebase_core: ^2.25.4
   flutter:
     sdk: flutter
   uuid: ^4.2.0
