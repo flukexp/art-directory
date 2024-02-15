@@ -1,10 +1,6 @@
 // main.dart
 import 'package:flutter/material.dart';
-import 'LoginScreen.dart';
-import 'CameraScreen.dart';
-import 'HomeScreen.dart';
-import 'RankingScreen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'LoginScreen.dart';   // Import LoginScreen
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -35,8 +31,7 @@ class MainScreen extends StatelessWidget {
         title: const Text('Art Directory'),
         backgroundColor: Colors.white,
       ),
-      body: const LoginScreen(),
+      body: const LoginScreen(username: '', score1: 0, score2: 0),  // Provide default values for username, score1, and score2
     );
   }
 }
-
