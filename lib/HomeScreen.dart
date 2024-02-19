@@ -22,20 +22,22 @@ class _HomeScreenState extends State<HomeScreen> {
     const RankingScreen(),
   ];
 
+  final List<String> _appBarTitles = ['Home', 'Camera', 'Ranking'];
+
   // Function to handle logout
   void _logout() {
-  // Navigate back to the login screen and replace the current route
-  Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(builder: (context) => const MainScreen()),
-  );
-}
+    // Navigate back to the login screen and replace the current route
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const MainScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Art Directory'),
+        title: Text(_appBarTitles[_currentIndex]), // Dynamically set the title
         backgroundColor: Colors.white,
         actions: <Widget>[
           IconButton(
