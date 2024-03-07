@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class RankingBlog extends StatefulWidget {
   final int index; // Add a parameter to receive the index
+  final String username;
+  final int score;
 
-  const RankingBlog({Key? key, required this.index}) : super(key: key);
+  const RankingBlog({Key? key, required this.index, required this.username, required this.score}) : super(key: key);
 
   @override
   State<RankingBlog> createState() => _RankingBlogState();
@@ -66,7 +68,7 @@ class _RankingBlogState extends State<RankingBlog> {
               child: Align(
                 child: SizedBox(
                   child: Text(
-                    'name',
+                    widget.username,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14 * fem,
@@ -88,7 +90,7 @@ class _RankingBlogState extends State<RankingBlog> {
                   width: 37 * fem,
                   height: 22 * fem,
                   child: Text(
-                    '1600',
+                    '${widget.score}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 15 * fem,

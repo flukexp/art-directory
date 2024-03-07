@@ -105,6 +105,9 @@ class _SnakeGamePageState extends State<SnakeGamePage> {
           actions: [
             ElevatedButton(
               onPressed: () {
+                // Push the score to the database before restarting the game
+                pushScoreToDatabase(widget.username, score);
+                
                 Navigator.of(context).pop(); // Close the dialog
                 startGame();
               },
