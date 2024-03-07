@@ -1,11 +1,11 @@
 import 'package:artdirectory/main.dart';
 import 'package:flutter/material.dart';
 import 'MenuScreen.dart';
-import 'CameraScreen.dart';
 import 'RankingScreen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key, required this.title}) : super(key: key);
+  final String username;
+  const HomeScreen({Key? key, required this.title, required this.username}) : super(key: key);
 
   final String title;
 
@@ -16,13 +16,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _tabs = [
-    const MenuScreen(),
-    const CameraScreen(),
-    const RankingScreen(),
-  ];
+  late final List<Widget> _tabs;
 
-  final List<String> _appBarTitles = ['Home', 'Camera', 'Ranking'];
+  final List<String> _appBarTitles = ['Home', 'Ranking'];
 
   // Function to handle logout
   void _logout() {
@@ -31,6 +27,15 @@ class _HomeScreenState extends State<HomeScreen> {
       context,
       MaterialPageRoute(builder: (context) => const MainScreen()),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _tabs = [
+      MenuScreen(username: widget.username),
+      RankingScreen(username: widget.username),
+    ];
   }
 
   @override
@@ -76,10 +81,6 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: 'Camera',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),

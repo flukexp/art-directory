@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'games/snake_game.dart'; 
 
-class MenuScreen extends StatelessWidget {
-  const MenuScreen({Key? key}) : super(key: key);
+class MenuScreen extends StatefulWidget {
+  final String username;
+  const MenuScreen({Key? key, required this.username}) : super(key: key);
 
+  @override
+  State<MenuScreen> createState() => _MenuScreenState();
+}
+
+class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -14,8 +21,11 @@ class MenuScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                // Handle button A press
-                print('Button A pressed');
+                // Navigate to SnakeGamePage when Button A is pressed
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SnakeGamePage(username: widget.username)),
+                );
               },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 40, horizontal: 100),

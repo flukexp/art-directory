@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) => const HomeScreen(title: "Art Directory")),
+              builder: (context) => HomeScreen(title: "Art Directory", username: _usernameController.text)),
         );
       } else {
         print('Username is not available.');
