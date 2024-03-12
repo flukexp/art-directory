@@ -1,3 +1,6 @@
+// pachara bunjong 640510670 database
+// chaiwitchit konfoo 640510609 & phichamon jongsukklang 640510625 design
+
 import 'package:flutter/material.dart';
 import 'games/snake_game.dart'; 
 

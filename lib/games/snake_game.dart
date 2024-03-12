@@ -1,3 +1,6 @@
+// chaiwitchit konfoo 640510609 make game from youtube
+// phichamon jongsukklang 640510625 design
+
 import 'dart:async';
 import 'dart:math';
 
@@ -55,6 +58,7 @@ class _SnakeGamePageState extends State<SnakeGamePage> {
     // Get the current score1 from the database
     DocumentSnapshot userSnapshot = await userRef.get();
     int bestScore = userSnapshot.get('score1') ?? 0;
+    // ignore: use_build_context_synchronously
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -63,8 +67,8 @@ class _SnakeGamePageState extends State<SnakeGamePage> {
           title: Text(
             "Game Over",
             style: TextStyle(
-              color: Colors.red, // Title text color
-              fontSize: 24, // Title text size
+              color: Color(0xFFB785E9), // Title text color
+              fontSize: 30, // Title text size
               fontWeight: FontWeight.bold, // Title text weight
             ),
           ),
@@ -78,16 +82,19 @@ class _SnakeGamePageState extends State<SnakeGamePage> {
               ),
               const SizedBox(height: 20),
               Text(
-                "${widget.username}",
-                style: TextStyle(
-                  fontSize: 20, // Content text size
-                  fontWeight: FontWeight.bold, // Content text weight
-                ),
-              ),
+  "${widget.username}",
+  style: TextStyle(
+    color: Color(0xFF9966CC), // ตั้งค่าสีของข้อความ
+    fontSize: 20, // ตั้งค่าขนาดของข้อความ
+    fontWeight: FontWeight.bold, // ตั้งค่าน้ำหนักของข้อความ
+  ),
+),
+
               const SizedBox(height: 20),
               Text(
                 "Your best score: $bestScore",
                 style: TextStyle(
+                  color: Color(0xFF666666),
                   fontSize: 20, // Content text size
                   fontWeight: FontWeight.bold, // Content text weight
                 ),
@@ -96,6 +103,7 @@ class _SnakeGamePageState extends State<SnakeGamePage> {
               Text(
                 "Your Score: $score",
                 style: TextStyle(
+                  color: Color(0xFF666666),
                   fontSize: 20, // Content text size
                   fontWeight: FontWeight.bold, // Content text weight
                 ),
@@ -112,8 +120,7 @@ class _SnakeGamePageState extends State<SnakeGamePage> {
                 startGame();
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.green, // Restart button color
-                onPrimary: Colors.white, // Restart button text color
+                foregroundColor: Colors.black, primary: Color(0xFFB785E9), // Restart button text color
               ),
               child: Text(
                 "Restart",
@@ -131,8 +138,8 @@ class _SnakeGamePageState extends State<SnakeGamePage> {
                 Navigator.of(context).pop(); // Close the SnakeGamePage
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.red, // Exit Game button color
-                onPrimary: Colors.white, // Exit Game button text color
+                primary: Color(0xFF00C0DA), // Exit Game button color
+                onPrimary: Colors.black, // Exit Game button text color
               ),
               child: Text(
                 "Exit Game",
@@ -142,7 +149,7 @@ class _SnakeGamePageState extends State<SnakeGamePage> {
               ),
             ),
           ],
-          backgroundColor: Colors.grey[200], // Background color of the dialog
+          backgroundColor: Colors.grey[150], // Background color of the dialog
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0), // Border radius
           ),
@@ -268,7 +275,7 @@ class _SnakeGamePageState extends State<SnakeGamePage> {
 
   Color fillBoxColor(int index) {
     if (borderList.contains(index))
-      return Colors.yellow;
+      return Color(0xFFB785E9);
     else {
       if (snakePosition.contains(index)) {
         if (snakeHead == index) {
